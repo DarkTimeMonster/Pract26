@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Collections.Generic;
 using System.Globalization;
@@ -22,15 +22,20 @@ class Program
     //Четвёртое 
     const string fileName = "tvs.dat";
     
+    //Пятое
     const string fileName2 = "filename2.dat";
     
     //Шестое
     const string buyersFile = "buyersData.dat";
     
     static void Main()
-    {
+    {   
+        Console.WriteLine("Текстовые файлы: От 1 до 3");
+        Console.WriteLine("Бинарные файлы: От 4 до 6");
+        
 
         string N = Console.ReadLine();
+        Console.Clear();
         switch (N)
         {
             case "1":
@@ -55,6 +60,7 @@ class Program
                 break;
         }
     }
+    
 
     static void Z1()
     {
