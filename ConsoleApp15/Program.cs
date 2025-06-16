@@ -271,8 +271,7 @@ class Program
     static void Z4()
     {
         List<TV> tvs = new List<TV>();
-
-        // Если файла с ТВ нет, создаём тестовые данные и записываем в бинарник
+        
         if (!File.Exists(fileName))
         {
             tvs.Add(new TV("Samsung", 40, 30000));
@@ -292,8 +291,7 @@ class Program
             }
             Console.WriteLine("Создан бинарный файл с тестовыми телевизорами.");
         }
-
-        // Читаем телевизоры из бинарного файла
+        
         tvs.Clear();
         using (BinaryReader br = new BinaryReader(File.Open(fileName, FileMode.Open)))
         {
@@ -306,7 +304,7 @@ class Program
             }
         }
 
-        // Фильтруем и выводим Samsung с диагональю больше 32
+
         var filtered = tvs.FindAll(tv => tv.Brand.Equals("Samsung", StringComparison.OrdinalIgnoreCase) && tv.Diagonal > 32);
 
         Console.WriteLine("\nТелевизоры фирмы Samsung с диагональю больше 32 дюймов:");
@@ -388,8 +386,7 @@ class Program
         }
         Console.WriteLine("Создан файл покупателей с тестовыми данными.");
     }
-
-    // Считаем покупателей из файла
+        
     var buyersList = new List<Buyer>();
     using (BinaryReader reader = new BinaryReader(File.Open(buyersFile, FileMode.Open)))
     {
@@ -406,25 +403,23 @@ class Program
             buyersList.Add(b);
         }
     }
-
-    // Вывод ДО изменения скидки
+    
     Console.WriteLine("\nПокупатели ДО изменения скидки:");
     foreach (var b in buyersList)
         Console.WriteLine(b.ToString());
-
-    // Увеличиваем скидку на 7%, если суммы >= 10000
+    
     for (int i = 0; i < buyersList.Count; i++)
     {
-        Buyer b = buyersList[i];  // Получаем копию структуры
+        Buyer b = buyersList[i];
         if (b.FirstHalfSum >= 10000 && b.SecondHalfSum >= 10000)
         {
-            b.DiscountPercent += 7;  // Изменяем копию
-            buyersList[i] = b;        // Записываем обратно в список
+            b.DiscountPercent += 7;  
+            buyersList[i] = b;       
         }
     }
 
 
-    // Записываем обратно
+  
     using (BinaryWriter writer = new BinaryWriter(File.Open(buyersFile, FileMode.Create)))
     {
         foreach (var b in buyersList)
@@ -436,8 +431,7 @@ class Program
             writer.Write(b.DiscountPercent);
         }
     }
-
-    // Вывод ПОСЛЕ изменения скидки
+    
     Console.WriteLine("\nПокупатели ПОСЛЕ изменения скидки:");
     foreach (var b in buyersList)
         Console.WriteLine(b.ToString());
